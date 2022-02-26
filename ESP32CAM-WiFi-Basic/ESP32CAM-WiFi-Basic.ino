@@ -28,11 +28,13 @@ const char* password = "********";  // Escribe la contraseña de dicha red
 WiFiClient espClient; // Este objeto maneja las variables necesarias para una conexion WiFi
 
 // Variables del programa
-int statusLedPin = 33;  // Esta variable controla el led de status
-int flashLedPin = 4; // Esta variable controla el led flash
-double timeLast, timeNow; // Variables para el control de tiempo no bloqueante
-double wait = 500;  // Espera de 500 mili segundos para consultar conexión
-bool statusLed = 0;// Bandera que me dice si el led esta encendido o apagado
+int statusLedPin = 33;     // Esta variable controla el led de status
+int flashLedPin = 4;       // Esta variable controla el led flash
+double timeLast, timeNow;  // Variables para el control de tiempo no bloqueante
+double wait = 500;         // Espera de 500 mili segundos para consultar conexión
+// bool statusLed = 0;     // Bandera que me dice si el led esta encendido o apagado. Se propone un cambio de nombre para evitar confusión, ya que
+                           // la bandera es para el LED flash, y tiene el nombre de status, como se llama el otro LED
+bool banderaLed = 0;       // Bandera que dirá si el LED flash está encendido o apagado
 
 // Inicialización del programa
 void setup() {
@@ -68,7 +70,10 @@ void setup() {
 
   // Si se logro la conexión, encender led
   if (WiFi.status () > 0){
-  digitalWrite (flashLedPin, LOW);
+  // digitalWrite (flashLedPin, LOW);   // esta instrucción, originalmente puesta en el código no le veo sentido, ya que
+                                        // la línea 45 ya la tiene y no hay algún cambio después. Tendría más sentido colocar
+                                        // la siguiente instrucción:
+    digitalWrite (statusLedPin, LOW);   // Para encender el LED de estatus
   }
   timeLast = millis (); // Inicia el control de tiempo
 }// Fin del void setup 
