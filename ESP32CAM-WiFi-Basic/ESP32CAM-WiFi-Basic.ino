@@ -81,14 +81,14 @@ void setup() {
 //Cuerpo del programa, bucle principal
 void loop() {
   timeNow = millis ();  // Seguimiento de tiempo
-  if ((timeNow - timeLast > wait) && statusLed == 0){// Comprobar el encendido del flash
+  if ((timeNow - timeLast > wait) && banderaLed == 0){// Comprobar el encendido del flash
     digitalWrite (flashLedPin, HIGH);// Encender el flash
-    statusLed = 1;//Indicar que el led flash se encuentra encendido
+    banderaLed = 1;//Indicar que el led flash se encuentra encendido
     timeLast = millis (); // Inicia el control de tiempo
   }
-  if ((timeNow - timeLast > wait) && statusLed == 1){
+  if ((timeNow - timeLast > wait) && banderaLed == 1){
     digitalWrite (flashLedPin, LOW);// Apagar Led el flash
-    statusLed = 0;//Indicar que el led flash se encuentra apagado
+    banderaLed = 0;//Indicar que el led flash se encuentra apagado
     timeLast = millis (); // Inicia el control de tiempo
   }
 }// Fin de void loop
